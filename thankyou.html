@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, lightyellow, lavender);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: orchid;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: mediumorchid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Thank You 💫</h2>
+    <p>Hope you enjoyed decorating your line 💖</p>
+    <button onclick="goHome()">Back to Welcome</button>
+  </div>
+
+  <script>
+    localStorage.removeItem("user");
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
