@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, lavender, lightpink);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: orchid;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: mediumorchid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Welcome to My Page ✨</h2>
+    <p>Decorate your favourite lines with emojis and colours 💖</p>
+    <button onclick="goSignup()">Get Started</button>
+  </div>
+
+  <script>
+    function goSignup() {
+      window.location.href = "signup.html";
+    }
+  </script>
+
+</body>
+</html>
