@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Decorate Your Line</title>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, pink, lightblue);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: purple;
+    }
+
+    textarea {
+      width: 80%;
+      height: 80px;
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 2px solid plum;
+      background: lightyellow;
+    }
+
+    .emoji-btn {
+      font-size: 22px;
+      padding: 6px 10px;
+      cursor: pointer;
+      margin: 4px;
+      border-radius: 6px;
+      background: khaki;
+      display: inline-block;
+    }
+
+    .emoji-btn:hover {
+      background: gold;
+    }
+
+    #card {
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      background: linear-gradient(135deg, lightyellow, lemonchiffon);
+      border-radius: 14px;
+      min-height: 100px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    #card p {
+      font-size: 22px;
+      color: darkgray;
+      word-wrap: break-word;
+    }
+
+    button {
+      padding: 12px 20px;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      background: orchid;
+      color: white;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: mediumorchid;
+    }
+
+    .colors span {
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+      border-radius: 50%;
+      cursor: pointer;
+      margin: 5px;
+      border: 2px solid white;
+    }
+
+    #savedLines {
+      margin-top: 30px;
+      text-align: left;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Decorate Your Favorite Line 📖</h2>
+
+  <textarea id="inputText" placeholder="Type or paste your favorite line..."></textarea>
+
+  <div>
+    <span class="emoji-btn" onclick="addEmoji('✨')">✨</span>
+    <span class="emoji-btn" onclick="addEmoji('🖤')">🖤</span>
+    <span class="emoji-btn" onclick="addEmoji('🌙')">🌙</span>
+    <span class="emoji-btn" onclick="addEmoji('📖')">📖</span>
+    <span class="emoji-btn" onclick="addEmoji('💫')">💫</span>
+    <span class="emoji-btn" onclick="addEmoji('😭')">😭</span>
+    <span class="emoji-btn" onclick="addEmoji('💋')">💋</span>
+  </div>
+
+  <div class="colors">
+    <p>Choose card colour 🎨</p>
+    <span style="background: lightyellow" onclick="changeBg('lightyellow')"></span>
+    <span style="background: lemonchiffon" onclick="changeBg('lemonchiffon')"></span>
+    <span style="background: lightblue" onclick="changeBg('lightblue')"></span>
+    <span style="background: pink" onclick="changeBg('pink')"></span>
+    <span style="background: lavender" onclick="changeBg('lavender')"></span>
+    <span style="background: grey" onclick="changeBg('grey')"></span>
+  </div>
+
+  <div id="card">
+    <p id="outputText">Your decorated line will appear here ✨</p>
+  </div>
+
+  <button onclick="saveLine()">Save Line</button>
+  <button onclick="finish()">Finish & Logout</button>
+
+  <div id="savedLines">
+    <h3>Saved Lines:</h3>
+    <ul id="linesList"></ul>
+  </div>
+
+  <script>
+    const input = document.getElementById("inputText");
+    const output = document.getElementById("outputText");
+    const card = document.getElementById("card");
+    const linesList = document.getElementById("linesList");
+
+    input.addEventListener("input", () => {
+      output.innerText = input.value;
+    });
+
+    function addEmoji(emoji) {
+      input.value += emoji;
+      output.innerText = input.value;
+    }
+
+    function changeBg(color) {
+      card.style.background = color;
+    }
+
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem("lines")) || [];
+      saved.forEach(line => addLineToList(line));
+    };
+
+    function saveLine() {
+      const text = input.value.trim();
+      if (!text) return alert("Type something first!");
+
+      const saved = JSON.parse(localStorage.getItem("lines")) || [];
+      saved.push(text);
+      localStorage.setItem("lines", JSON.stringify(saved));
+
+      addLineToList(text);
+      input.value = "";
+      output.innerText = "Your decorated line will appear here ✨";
+    }
+
+    function addLineToList(text) {
+      const li = document.createElement("li");
+      li.innerText = text;
+      linesList.appendChild(li);
+    }
+
+    function finish() {
+      window.location.href = "thankyou.html";
+    }
+  </script>
+
+</body>
+</html>
