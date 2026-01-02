@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, pink, lightblue);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid gray;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: orchid;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: mediumorchid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Sign Up 💖</h2>
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signup()">Continue</button>
+  </div>
+
+  <script>
+    function signup() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!name || !email || !password) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      localStorage.setItem("user", JSON.stringify({
+        name: name,
+        email: email
+      }));
+
+      window.location.href = "decorate.html";
+    }
+  </script>
+
+</body>
+</html>
